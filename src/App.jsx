@@ -1,64 +1,58 @@
 import React, { useState } from 'react';
 import './App.css';
-import CurrentWeather from './components/currentWeather/currentWeather';
+import CurrentWeather from './components/currentWeather/CurrentWeather';
+import Loading from './components/Loading';
 import Search from './components/search';
+import { WEATHER_API_KEY, WEATHER_API_URL } from './api';
+import Forecast from './components/forecast/Forecast';
 // Icons
 
 const APIkey = 'a1d18af1391c16b2ae1f518dadd2fb58';
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [currentWeather, setCurrentWeather] = useState(null);
+  const [forecast, setForecasts] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleOnSearchChange = (searchData) => {
-    console.log(searchData);
+    const [lat, lon] = searchData.value.split(' ');
+
+    const currentWeatherFetch = fetch(
+      `${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
+    );
+    const forecastFetch = fetch(
+      `${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
+    );
+
+    Promise.all([currentWeatherFetch, forecastFetch])
+      .then(async (response) => {
+        const weatherResponse = await response[0].json();
+        const forecastResponse = await response[1].json();
+
+        setCurrentWeather({ city: searchData.label, ...weatherResponse });
+        setForecasts({ city: searchData.label, ...forecastResponse });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
+  console.log('weather', currentWeather);
+  console.log('forecast', forecast);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <main>
       <div className="search-container">
         <Search onSearchChange={handleOnSearchChange} />
       </div>
-      <CurrentWeather />
+      {currentWeather && <CurrentWeather data={currentWeather} />}
+      {forecast && <Forecast data={forecast} />}
     </main>
   );
 }
 
 export default App;
-
-// let icon;
-
-// switch (data && data.weather[0].main) {
-//   case 'Clouds':
-//     icon = <IoMdCloudy />;
-//     break;
-//   case 'Haze':
-//     icon = <BsCloudHaze2Fill />;
-//     break;
-//   case 'Rain':
-//     icon = <IoMdRainy />;
-//     break;
-//   case 'Clear':
-//     icon = <IoMdSunny />;
-//     break;
-//   case 'Drizzle':
-//     icon = <BsCloudDrizzleFill />;
-//     break;
-//   case 'Snow':
-//     icon = <IoMdSnow />;
-//     break;
-//   case 'Thunderstorm':
-//     icon = <IoMdThunderstorm />;
-//     break;
-// }
-// useEffect(() => {
-//   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIkey}`;
-
-//   axios.get(url).then((res) => {
-//     setData(res.data);
-//   });
-//   setLoading(false);
-// }, [location]);
-
-// if (loading) {
-//   return <Loading />;
-// }

@@ -1,0 +1,31 @@
+.title {
+  font-size: 23px;
+  font-weight: 700;
+}
+.daily-item {
+  background-color: aliceblue;
+  border-radius: 15px;
+  height: 40px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px 20px;
+}
+.icon-small {
+  width: 40px;
+}
+.day {
+  color: rgb(120, 118, 118);
+  flex: 1 1;
+  font-weight: 600;
+  margin-left: 15px;
+}
+.description {
+  flex: 1 1;
+  margin-right: 15px;
+  text-align: right;
+}
+.min-max {
+  color: #757575;
+}
