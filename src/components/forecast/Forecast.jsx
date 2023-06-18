@@ -25,8 +25,9 @@ const Forecast = ({ data }) => {
   console.log(forecastWeek);
   return (
     <>
-      <label className="title">Daily</label>
-      <Accordion allowZeroExpanded>
+      <Accordion allowZeroExpanded className="forecast-container">
+        <label className="title">Upcoming Forecast </label>
+
         {data.list.splice(0, 7).map((item, idx) => {
           return (
             <AccordionItem key={idx}>
@@ -49,7 +50,34 @@ const Forecast = ({ data }) => {
                   </div>
                 </AccordionItemButton>
               </AccordionItemHeading>
-              <AccordionItemPanel></AccordionItemPanel>
+              <AccordionItemPanel>
+                <div className="daily-details-grid">
+                  <div className="daily-details-grid-item">
+                    <label>Pressure</label>
+                    <label>{item.main.pressure}</label>
+                  </div>
+                  <div className="daily-details-grid-item">
+                    <label>Humidity</label>
+                    <label>{item.main.humidity}</label>
+                  </div>
+                  <div className="daily-details-grid-item">
+                    <label>Clouds</label>
+                    <label>{item.clouds.all}</label>
+                  </div>
+                  <div className="daily-details-grid-item">
+                    <label>Wind Speed</label>
+                    <label>{item.wind.speed}</label>
+                  </div>
+                  <div className="daily-details-grid-item">
+                    <label>Sea level</label>
+                    <label>{item.main.sea_level}m</label>
+                  </div>
+                  <div className="daily-details-grid-item">
+                    <label>Feels like</label>
+                    <label>{item.main.feels_like}℃</label>
+                  </div>
+                </div>
+              </AccordionItemPanel>
             </AccordionItem>
           );
         })}

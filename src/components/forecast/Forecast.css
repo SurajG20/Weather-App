@@ -1,6 +1,14 @@
 .title {
-  font-size: 23px;
-  font-weight: 700;
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: #a5a4a4;
+}
+.forecast-container {
+  margin-top: 1rem;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem 2rem;
+  background-color: aliceblue;
 }
 .daily-item {
   background-color: aliceblue;
@@ -25,7 +33,33 @@
   flex: 1 1;
   margin-right: 15px;
   text-align: right;
+  font-weight: 600;
+  font-size: 1.025rem;
+  color: #4a6fa1;
 }
 .min-max {
   color: #757575;
+  font-size: 1.025rem;
+  /* width: 5rem; */
+  text-align: center;
+}
+.daily-details-grid {
+  row-gap: 0;
+  column-gap: 15px;
+  display: grid;
+  flex: 1 1;
+  grid-template-columns: auto auto;
+  padding: 5px 15px;
+}
+.daily-details-grid-item {
+  display: flex;
+  height: 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+.daily-details-grid-item label:first-child {
+  color: #757575;
+}
+.daily-details-grid-item label:last-child {
+  color: #464646;
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
-import { geoApiOptions, GEO_API_URl } from '../api';
-
+import { geoApiOptions, GEO_API_URl } from '../../api';
+import './Search.css';
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
 
@@ -28,14 +28,33 @@ const Search = ({ onSearchChange }) => {
     setSearch(searchData);
     onSearchChange(searchData);
   };
+
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      border: 'none',
+      fontsize: '18px',
+      boxShadow: 'none',
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? '#3699FF' : null,
+      color: state.isFocused ? 'white' : null,
+    }),
+  };
+
   return (
-    <AsyncPaginate
-      placeholder="Search for City"
-      debounceTimeout={600}
-      value={search}
-      onChange={handleOnChange}
-      loadOptions={loadOptions}
-    />
+    <div className="search-container">
+      <AsyncPaginate
+        className="search-element"
+        placeholder="Search for City"
+        debounceTimeout={600}
+        value={search}
+        onChange={handleOnChange}
+        loadOptions={loadOptions}
+        styles={customStyles}
+      />
+    </div>
   );
 };
 export default Search;
