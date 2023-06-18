@@ -14,3 +14,5 @@ Weather App built with React.
 - **Weather forecast for any city or place**
 - **Extended 7 days forecast**
 - **Auto Complete for City**
+- **Open weather api and GeoDB api**
+- **Deployed on Github page**
