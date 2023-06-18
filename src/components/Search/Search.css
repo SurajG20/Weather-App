@@ -15,10 +15,4 @@
   font-size: 1.125rem;
   border-radius: 10px;
   width: 100%;
-  &:focus {
-    outline: none;
-  }
-  &::placeholder {
-    color: gray;
-  }
 }

@@ -15,7 +15,7 @@ body {
   justify-content: center;
   min-height: 100vh;
   position: relative;
-  background-image: url('icons/background.avif');
+  background-image: url('/public/icons/background.avif');
 }
 
 #root {
