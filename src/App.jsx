@@ -6,6 +6,7 @@ import Search from './components/Search/search';
 import { WEATHER_API_KEY, WEATHER_API_URL } from './api';
 import Forecast from './components/forecast/Forecast';
 import Header from './components/header/Header';
+import Github from './components/GIthub/Github';
 // Icons
 
 const APIkey = 'a1d18af1391c16b2ae1f518dadd2fb58';
@@ -50,6 +51,7 @@ function App() {
   return (
     <>
       {loading && <Loading />}
+      <Github />
       <Header />
       <Search onSearchChange={handleOnSearchChange} />
       {currentWeather && <CurrentWeather data={currentWeather} />}

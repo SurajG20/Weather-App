@@ -1,0 +1,12 @@
+.github-logo {
+  height: 50px;
+  width: 50px;
+}
+.github-logo-container {
+  position: absolute;
+  top: 35px;
+  right: 40px;
+}
+.github-logo-container a {
+  text-decoration: none;
+}
